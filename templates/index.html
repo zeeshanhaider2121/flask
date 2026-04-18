@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatPDF Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="topbar-left">
+                <a class="brand" href="#" aria-label="ChatPDF">
+                    <span class="brand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h12a1.5 1.5 0 0 1 1.5 1.5v4.3L10.4 18H5.5A1.5 1.5 0 0 1 4 16.5z"></path>
+                            <path d="M10.4 18v-6.1a1.9 1.9 0 0 1 1.9-1.9H19"></path>
+                        </svg>
+                    </span>
+                    <span class="brand-text">ChatPDF</span>
+                </a>
+
+                <button class="icon-btn" type="button" aria-label="Layout">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="6.5" height="16" rx="1.2"></rect>
+                        <rect x="13.5" y="4" width="6.5" height="16" rx="1.2"></rect>
+                    </svg>
+                </button>
+
+                <button class="new-chat-btn" type="button">
+                    <span>+</span>
+                    <span>New</span>
+                </button>
+            </div>
+
+            <div class="topbar-right">
+                <button class="lang-btn" type="button">
+                    <span>EN</span>
+                    <span class="caret">&or;</span>
+                </button>
+                <button class="plus-btn" type="button">&#10022; Plus</button>
+                <button class="signup-btn top" type="button">Sign up</button>
+            </div>
+        </header>
+
+        <div class="app-content">
+            <aside class="sidebar">
+                <div class="sidebar-scroll">
+                    <section class="sidebar-block">
+                        <h2>Chats</h2>
+                        <ul id="fileList" class="item-list">
+                            <li class="doc-item">+ Start your first chat</li>
+                        </ul>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <h2>Folders</h2>
+                        <ul class="item-list">
+                            <li>+ New folder</li>
+                        </ul>
+                    </section>
+
+                    <section class="sidebar-block">
+                        <h2>Tools</h2>
+                        <ul class="item-list tools">
+                            <li>&#9998; AI Writer</li>
+                            <li>&#9879; AI Detector</li>
+                            <li>&#9719; YouTube Chat</li>
+                            <li>&#9998; Research</li>
+                            <li>&or; Windows app</li>
+                            <li>&or; Mobile app</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="sidebar-footer">
+                    <p>Sign up for free to save your chat history</p>
+                    <div class="mini-cards" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <button class="signup-btn side" type="button">&#9673; Sign up</button>
+                </div>
+            </aside>
+
+            <main class="main-panel">
+                <div class="main-scroll">
+                    <section class="hero">
+                        <h1>
+                            <span class="sparkle">&#10022;</span>
+                            <span class="hero-blue">Best-in-class AI tools</span> for
+                            <br>
+                            students and researchers
+                        </h1>
+
+                        <article class="tool-card">
+                            <nav class="tool-tabs" aria-label="Tool tabs">
+                                <button class="tab-item active" type="button">&#9711; Chat</button>
+                                <button class="tab-item" type="button">&#9776; Summary</button>
+                                <button class="tab-item" type="button">&#9879; AI Detector</button>
+                                <button class="tab-item" type="button">&#9998; AI Writer</button>
+                                <button class="tab-item" type="button">&#9993; Flashcards</button>
+                                <button class="tab-item" type="button">&#8991; Slides</button>
+                                <button class="tab-item" type="button">&#8644; Research</button>
+                            </nav>
+
+                            <h2>Chat with any <span>&#128193;</span> file, <span>&#128250;</span> video or <span>&#128279;</span> website</h2>
+
+                            <div class="tool-panels">
+                                <div class="drop-note">DROP YOUR<br>PDF FILE HERE</div>
+                                <section class="upload-panel" id="dropZone">
+                                    <input id="fileInput" type="file" accept=".pdf,.doc,.docx,.txt">
+                                    <p>
+                                        <span>Drop a file or</span>
+                                        <button id="uploadTrigger" type="button">upload &uarr;</button>
+                                    </p>
+                                    <small id="uploadStatus">Supports PDF, DOCX, TXT</small>
+                                </section>
+
+                                <section class="chat-panel">
+                                    <div class="chat-input-row">
+                                        <input id="query" type="text" placeholder="Ask to start a chat">
+                                    </div>
+
+                                    <p class="paste-hint">
+                                        <kbd>CTRL</kbd>
+                                        <kbd>V</kbd>
+                                        <span>to paste text or links</span>
+                                    </p>
+
+                                    <div id="chat" class="chat-log">
+                                        <div class="chat-placeholder">Start chatting with your PDFs.</div>
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+
+                        <section class="logos-row" aria-label="University logos">
+                            <div class="logo-box">HARVARD<br><span>UNIVERSITY</span></div>
+                            <div class="logo-box">UNIVERSITY OF<br><span>CAMBRIDGE</span></div>
+                            <div class="logo-box">UNIVERSITY OF<br><span>OXFORD</span></div>
+                            <div class="logo-box">Stanford<br><span>University</span></div>
+                        </section>
+
+                        <section class="stats-row" aria-label="Social proof">
+                            <div class="stat-item">
+                                <span class="laurel">&#10088; &#10089;</span>
+                                <div>
+                                    <small>Daily answered Q's</small>
+                                    <strong>1,000,000+</strong>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <span class="avatars">&#9673;&#9673;&#9673;&#9673;</span>
+                                <div>
+                                    <small>Loved by users</small>
+                                    <strong>10M+ users</strong>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <span class="laurel">&#10088; &#10089;</span>
+                                <div>
+                                    <small>Gen AI 2024</small>
+                                    <strong>Top 50</strong>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="quote-card">
+                            <p>
+                                "It's like ChatGPT,
+                                <br>
+                                but for <span>research papers</span>."
+                            </p>
+                        </section>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
