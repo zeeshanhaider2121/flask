@@ -44,4 +44,4 @@ def item_detail(item_id):
         return "<h1>Item Not Found</h1><p>Sorry, this item doesn't exist.</p><a href='/menu'>Back to Menu</a>", 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0', port=5000)
